@@ -15,8 +15,8 @@
 
 use std::num::NonZeroUsize;
 
-use rusqlite::{params, Connection};
-use rusqlite_migration::{Migrations, SchemaVersion, M};
+use rusqdoltlite::{params, Connection};
+use rusqdoltlite_migration::{Migrations, SchemaVersion, M};
 
 #[test]
 fn main_test() {

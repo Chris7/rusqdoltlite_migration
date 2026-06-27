@@ -15,8 +15,8 @@
 
 use std::{iter::FromIterator, num::NonZeroUsize};
 
-use rusqlite::{params, Connection, Transaction};
-use rusqlite_migration::{Migrations, MigrationsBuilder, SchemaVersion, M};
+use rusqdoltlite::{params, Connection, Transaction};
+use rusqdoltlite_migration::{Migrations, MigrationsBuilder, SchemaVersion, M};
 
 #[test]
 fn main_test() {

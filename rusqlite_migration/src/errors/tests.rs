@@ -26,10 +26,10 @@ fn all_errors() -> Vec<(&'static str, crate::Error)> {
 
     vec![
         (
-            "rusqlite_error",
-            RusqliteError {
+            "rusqdoltlite_error",
+            RusqDoltLiteError {
                 query: "SELECT * FROM table42;".to_owned(),
-                err: rusqlite::Error::InvalidQuery,
+                err: rusqdoltlite::Error::InvalidQuery,
             },
         ),
         (
@@ -74,19 +74,19 @@ fn all_errors() -> Vec<(&'static str, crate::Error)> {
     ]
 }
 
-// We should be able to convert rusqlite errors transparently
+// We should be able to convert rusqdoltlite errors transparently
 #[test]
-fn test_rusqlite_error_conversion() {
+fn test_rusqdoltlite_error_conversion() {
     assert!(matches!(
-        Error::from(rusqlite::Error::MultipleStatement),
-        Error::RusqliteError { query: _, err: _ }
+        Error::from(rusqdoltlite::Error::MultipleStatement),
+        Error::RusqDoltLiteError { query: _, err: _ }
     ));
 
-    let hook_error = HookError::from(rusqlite::Error::MultipleStatement);
-    assert!(matches!(&hook_error, &HookError::RusqliteError(_)));
+    let hook_error = HookError::from(rusqdoltlite::Error::MultipleStatement);
+    assert!(matches!(&hook_error, &HookError::RusqDoltLiteError(_)));
     assert!(matches!(
         Error::from(hook_error),
-        Error::RusqliteError { query: _, err: _ },
+        Error::RusqDoltLiteError { query: _, err: _ },
     ));
 }
 
@@ -136,32 +136,32 @@ fn test_specified_schema_version_error() {
 
 // Two errors with different queries or errors should be considered different
 #[test]
-fn test_rusqlite_error_query() {
+fn test_rusqdoltlite_error_query() {
     assert_ne!(
-        Error::RusqliteError {
+        Error::RusqDoltLiteError {
             query: "SELECTTT".to_owned(),
-            err: rusqlite::Error::InvalidQuery
+            err: rusqdoltlite::Error::InvalidQuery
         },
-        Error::RusqliteError {
+        Error::RusqDoltLiteError {
             query: "SSSELECT".to_owned(),
-            err: rusqlite::Error::InvalidQuery
+            err: rusqdoltlite::Error::InvalidQuery
         }
     );
     assert_ne!(
-        Error::RusqliteError {
+        Error::RusqDoltLiteError {
             query: "SELECT".to_owned(),
-            err: rusqlite::Error::MultipleStatement
+            err: rusqdoltlite::Error::MultipleStatement
         },
-        Error::RusqliteError {
+        Error::RusqDoltLiteError {
             query: "SELECT".to_owned(),
-            err: rusqlite::Error::InvalidQuery
+            err: rusqdoltlite::Error::InvalidQuery
         }
     )
 }
 
 // Two errors with different file load errors should be considered different
 #[test]
-fn test_rusqlite_error_file_load() {
+fn test_rusqdoltlite_error_file_load() {
     assert_ne!(
         Error::FileLoad("s1".to_owned()),
         Error::FileLoad("s2".to_owned())
@@ -170,7 +170,7 @@ fn test_rusqlite_error_file_load() {
 
 // Two errors with different foreign key checks should be considered different
 #[test]
-fn test_rusqlite_error_fkc() {
+fn test_rusqdoltlite_error_fkc() {
     assert_ne!(
         Error::ForeignKeyCheck(vec![ForeignKeyCheckError {
             table: "t1".to_owned(),
@@ -277,15 +277,15 @@ fn schema_version_partial_display_test() {
 
 #[test]
 fn error_test_source() {
-    let err = Error::RusqliteError {
+    let err = Error::RusqDoltLiteError {
         query: String::new(),
-        err: rusqlite::Error::InvalidQuery,
+        err: rusqdoltlite::Error::InvalidQuery,
     };
     assert_eq!(
         std::error::Error::source(&err)
-            .and_then(|e| e.downcast_ref::<rusqlite::Error>())
+            .and_then(|e| e.downcast_ref::<rusqdoltlite::Error>())
             .unwrap(),
-        &rusqlite::Error::InvalidQuery
+        &rusqdoltlite::Error::InvalidQuery
     );
 
     let err = Error::SpecifiedSchemaVersion(SchemaVersionError::TargetVersionOutOfRange {

@@ -22,7 +22,7 @@ use std::borrow::Cow;
 use std::fmt::Display;
 
 use log::{debug, info, trace, warn};
-use rusqlite::{Connection, Transaction};
+use rusqdoltlite::{Connection, Transaction};
 
 #[cfg(feature = "from-directory")]
 use include_dir::Dir;
@@ -182,7 +182,7 @@ impl<'u> M<'u> {
     ///     * [`journal_mode`][jm] has no effect when executed inside transactions (that will be
     ///       the case for the SQL written in `up`).
     ///   * Multiple SQL commands containing `PRAGMA` are [not working][ru794] with the
-    ///     `extra_check` feature of rusqlite.
+    ///     `extra_check` feature of rusqdoltlite.
     ///
     /// ## Misc.
     ///
@@ -193,12 +193,12 @@ impl<'u> M<'u> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::M;
+    /// use rusqdoltlite_migration::M;
     ///
     /// M::up("CREATE TABLE animals (name TEXT);");
     /// ```
     ///
-    /// [ru794]: https://github.com/rusqlite/rusqlite/pull/794
+    /// [ru794]: https://github.com/rusqdoltlite/rusqdoltlite/pull/794
     /// [jm]: https://sqlite.org/pragma.html#pragma_journal_mode
     pub const fn up(sql: &'u str) -> Self {
         Self {
@@ -226,8 +226,8 @@ impl<'u> M<'u> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{M, Migrations};
-    /// use rusqlite::Transaction;
+    /// use rusqdoltlite_migration::{M, Migrations};
+    /// use rusqdoltlite::Transaction;
     ///
     /// let migrations = Migrations::new(vec![
     ///     // This table will later be filled with some novel content
@@ -249,7 +249,7 @@ impl<'u> M<'u> {
     ///                 let compressed = &text[..text.len() / 2];
     ///                 tx.execute(
     ///                     "UPDATE novels SET compressed = ?1 WHERE rowid = ?2;",
-    ///                     rusqlite::params![compressed, rowid],
+    ///                     rusqdoltlite::params![compressed, rowid],
     ///                 )?;
     ///             }
     ///
@@ -272,7 +272,7 @@ impl<'u> M<'u> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::M;
+    /// use rusqdoltlite_migration::M;
     ///
     /// M::up("CREATE TABLE animals (name TEXT);")
     ///     .down("DROP TABLE animals;");
@@ -314,8 +314,8 @@ impl<'u> M<'u> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite::{params, Connection};
-    /// use rusqlite_migration::{Migrations, M};
+    /// use rusqdoltlite::{params, Connection};
+    /// use rusqdoltlite_migration::{Migrations, M};
     ///
     /// let migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE animals (name TEXT);")
@@ -405,7 +405,7 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M};
+    /// use rusqdoltlite_migration::{Migrations, M};
     ///
     /// let migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE animals (name TEXT);"),
@@ -423,7 +423,7 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M};
+    /// use rusqdoltlite_migration::{Migrations, M};
     ///
     /// const MIGRATION_ARRAY: &[M] = &[
     ///     M::up("CREATE TABLE animals (name TEXT);"),
@@ -466,7 +466,7 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::Migrations;
+    /// use rusqdoltlite_migration::Migrations;
     /// use include_dir::{Dir, include_dir};
     ///
     /// static MIGRATION_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/../examples/from-directory/migrations");
@@ -504,10 +504,10 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M, SchemaVersion};
+    /// use rusqdoltlite_migration::{Migrations, M, SchemaVersion};
     /// use std::num::NonZeroUsize;
     ///
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     ///
     /// let migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE animals (name TEXT);"),
@@ -524,7 +524,7 @@ impl<'m> Migrations<'m> {
     ///
     /// # Errors
     ///
-    /// Returns [`Error::RusqliteError`] or [`Error::InvalidUserVersion`] in case the user
+    /// Returns [`Error::RusqDoltLiteError`] or [`Error::InvalidUserVersion`] in case the user
     /// version cannot be queried.
     pub fn current_version(&self, conn: &Connection) -> Result<SchemaVersion> {
         user_version(conn).map(|v| self.db_version_to_schema(v))
@@ -553,9 +553,9 @@ impl<'m> Migrations<'m> {
     /// migrations, if any migrations would run.
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M};
+    /// use rusqdoltlite_migration::{Migrations, M};
     ///
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     /// let mut migrations: Migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE animals (name TEXT);"),
     ///     M::up("CREATE TABLE food (name TEXT);"),
@@ -575,9 +575,9 @@ impl<'m> Migrations<'m> {
     /// version of the program and then that same database is opened again by the older version.
     ///
     /// ```rust
-    /// use rusqlite_migration::{Error, Migrations, M, MigrationDefinitionError};
+    /// use rusqdoltlite_migration::{Error, Migrations, M, MigrationDefinitionError};
     ///
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     ///
     /// // Initial set of migrations in, say, version 1 of the program
     /// let mut ms = vec![
@@ -606,7 +606,7 @@ impl<'m> Migrations<'m> {
     ///
     /// # Errors
     ///
-    /// Returns [`Error::RusqliteError`] or [`Error::InvalidUserVersion`] in case the user
+    /// Returns [`Error::RusqDoltLiteError`] or [`Error::InvalidUserVersion`] in case the user
     /// version cannot be queried.
     pub fn pending_migrations(&self, conn: &Connection) -> Result<i32> {
         Ok(self.ms.len() as i32 - user_version(conn)? as i32)
@@ -758,8 +758,8 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M};
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// use rusqdoltlite_migration::{Migrations, M};
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     ///
     /// let migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE animals (name TEXT);"),
@@ -778,11 +778,11 @@ impl<'m> Migrations<'m> {
     ///
     /// Returns [`Error::MigrationDefinition`] if no migration is defined.
     ///
-    /// Returns [`Error::RusqliteError`] if rusqlite returns an error when executing a migration
+    /// Returns [`Error::RusqDoltLiteError`] if rusqdoltlite returns an error when executing a migration
     /// statement. Note that this immediatley stops applying migrations.
     /// ```rust
-    /// # use rusqlite_migration::{Migrations, M};
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// # use rusqdoltlite_migration::{Migrations, M};
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     ///
     /// let migrations = Migrations::new(vec![
     ///     M::up("CREATE TABLE t1 (c);"),
@@ -793,26 +793,26 @@ impl<'m> Migrations<'m> {
     ///
     /// assert!(matches!(
     ///     migrations.to_latest(&mut conn),
-    ///     Err(rusqlite_migration::Error::RusqliteError {
+    ///     Err(rusqdoltlite_migration::Error::RusqDoltLiteError {
     ///         query: _,
-    ///         err: rusqlite::Error::SqliteFailure(_, _),
+    ///         err: rusqdoltlite::Error::SqliteFailure(_, _),
     ///     })
     /// ));
     /// ```
-    /// If rusqlite `extra_check` feature is enabled, any migration that returns a value will error
+    /// If rusqdoltlite `extra_check` feature is enabled, any migration that returns a value will error
     /// and no further migrations will be applied.
     ///
     /// # Transaction Behavior
     ///
-    /// Since rusqlite 0.33, a [default transaction behavior][default_behavior] can be set. For
+    /// Since rusqdoltlite 0.33, a [default transaction behavior][default_behavior] can be set. For
     /// now, when applying migrations, this setting will be respected.
     ///
-    /// Please note that future minor versions of rusqlite_migration might decide to ignore the
+    /// Please note that future minor versions of rusqdoltlite_migration might decide to ignore the
     /// setting and to instead use any transaction behavior deemed most appropriate.  You can read
     /// more in the [corresponding page of the SQLite documentation][sqlite_doc].
     ///
     ///
-    /// [default_behavior]: https://github.com/rusqlite/rusqlite/pull/1532
+    /// [default_behavior]: https://github.com/rusqdoltlite/rusqdoltlite/pull/1532
     /// [sqlite_doc]: https://sqlite.org/lang_transaction.html
     pub fn to_latest(&self, conn: &mut Connection) -> Result<()> {
         let v_max = self.max_schema_version();
@@ -843,8 +843,8 @@ impl<'m> Migrations<'m> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, M};
-    /// let mut conn = rusqlite::Connection::open_in_memory().unwrap();
+    /// use rusqdoltlite_migration::{Migrations, M};
+    /// let mut conn = rusqdoltlite::Connection::open_in_memory().unwrap();
     /// let migrations = Migrations::new(vec![
     ///     // 0: version 0, before having run any migration
     ///     M::up("CREATE TABLE animals (name TEXT);").down("DROP TABLE animals;"),
@@ -923,7 +923,7 @@ impl<'m> Migrations<'m> {
     ///
     /// # Errors
     ///
-    /// Returns [`Error::RusqliteError`] if the underlying sqlite database open call fails.
+    /// Returns [`Error::RusqDoltLiteError`] if the underlying sqlite database open call fails.
     pub fn validate(&self) -> Result<()> {
         let mut conn = Connection::open_in_memory()?;
         self.to_latest(&mut conn)
@@ -934,7 +934,7 @@ impl<'m> Migrations<'m> {
 fn user_version(conn: &Connection) -> Result<usize> {
     // We can’t fix this without breaking API compatibility
     conn.query_row("PRAGMA user_version", [], |row| row.get(0))
-        .map_err(|e| Error::RusqliteError {
+        .map_err(|e| Error::RusqDoltLiteError {
             query: String::from("PRAGMA user_version;"),
             err: e,
         })
@@ -961,7 +961,7 @@ fn set_user_version(conn: &Connection, v: usize) -> Result<()> {
         }))
     }?;
     conn.pragma_update(None, "user_version", v)
-        .map_err(|e| Error::RusqliteError {
+        .map_err(|e| Error::RusqDoltLiteError {
             query: format!("PRAGMA user_version = {v}; -- Approximate query"),
             err: e,
         })

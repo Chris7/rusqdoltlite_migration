@@ -14,8 +14,8 @@
 // limitations under the License.
 
 use anyhow::Result;
-use rusqlite::{params, Connection};
-use rusqlite_migration::{Migrations, M};
+use rusqdoltlite::{params, Connection};
+use rusqdoltlite_migration::{Migrations, M};
 use tokio::task;
 
 /// The general idea with this example is to use [`spawn_blocking`][spawn_blocking]
@@ -29,7 +29,7 @@ mod tests {
     use super::*;
 
     // Validating that migrations are correctly defined. It is enough to test in the sync context,
-    // because under the hood, tokio_rusqlite executes the migrations in a sync context anyway.
+    // because under the hood, database work executes the migrations in a sync context anyway.
     #[test]
     fn migrations_test() {
         assert!(MIGRATIONS.validate().is_ok());

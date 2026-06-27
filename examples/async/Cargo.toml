@@ -8,10 +8,10 @@ publish = false
 log = "0.4"
 anyhow = "1"
 mktemp = "0.5"
-rusqlite = { workspace = true }
+rusqdoltlite = { workspace = true }
 tokio = { version = "1.52.3", features = ["full"] }
 
-[dependencies.rusqlite_migration]
+[dependencies.rusqdoltlite_migration]
 path = "../../rusqlite_migration"
 
 [dependencies.env_logger]

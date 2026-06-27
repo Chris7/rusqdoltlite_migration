@@ -16,7 +16,7 @@
 use criterion::{criterion_group, Criterion};
 use include_dir::{include_dir, Dir};
 
-use rusqlite_migration::Migrations;
+use rusqdoltlite_migration::Migrations;
 
 static MIGRATIONS_DIR_10: Dir = include_dir!("$CARGO_MANIFEST_DIR/benches/10_migrations");
 static MIGRATIONS_DIR_100: Dir = include_dir!("$CARGO_MANIFEST_DIR/benches/100_migrations");

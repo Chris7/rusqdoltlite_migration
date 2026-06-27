@@ -15,7 +15,7 @@
 
 use crate::M;
 
-use rusqlite::Connection;
+use rusqdoltlite::Connection;
 
 /// Attempt to set the user version in the whole possible range of values (even negative ones or
 /// values that don’t fit in the underlying 4 bytes field)

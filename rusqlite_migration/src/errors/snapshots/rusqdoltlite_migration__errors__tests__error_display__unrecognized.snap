@@ -1,0 +1,6 @@
+---
+source: rusqdoltlite_migration/src/errors/tests.rs
+expression: e
+snapshot_kind: text
+---
+rusqdoltlite_migration unknown error (the library might be out of date): rusqdoltlite_migration error in migration hook: unknown

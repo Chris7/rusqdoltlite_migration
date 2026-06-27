@@ -17,7 +17,7 @@
 
 use std::cell::OnceCell;
 
-use rusqlite::{Statement, Transaction};
+use rusqdoltlite::{Statement, Transaction};
 
 use crate::{Error, ForeignKeyCheckError, Result};
 

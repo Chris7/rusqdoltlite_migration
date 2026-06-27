@@ -33,12 +33,12 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[allow(clippy::enum_variant_names)]
 #[non_exhaustive]
 pub enum Error {
-    /// Rusqlite error, query may indicate the attempted SQL query
-    RusqliteError {
+    /// RusqDoltLite error, query may indicate the attempted SQL query
+    RusqDoltLiteError {
         /// SQL query that caused the error
         query: String,
-        /// Error returned by rusqlite
-        err: rusqlite::Error,
+        /// Error returned by rusqdoltlite
+        err: rusqdoltlite::Error,
     },
     /// Error with the specified schema version
     SpecifiedSchemaVersion(SchemaVersionError),
@@ -62,8 +62,8 @@ impl PartialEq for Error {
     fn eq(&self, other: &Self) -> bool {
         match (self, other) {
             (
-                Self::RusqliteError { query: q1, err: e1 },
-                Self::RusqliteError { query: q2, err: e2 },
+                Self::RusqDoltLiteError { query: q1, err: e1 },
+                Self::RusqDoltLiteError { query: q2, err: e2 },
             ) => q1 == q2 && e1 == e2,
             (Self::SpecifiedSchemaVersion(a), Self::SpecifiedSchemaVersion(b)) => a == b,
             (Self::MigrationDefinition(a), Self::MigrationDefinition(b)) => a == b,
@@ -80,8 +80,8 @@ impl PartialEq for Error {
 impl Error {
     /// Associate the SQL request that caused the error
     #[must_use]
-    pub fn with_sql(e: rusqlite::Error, sql: &str) -> Error {
-        Error::RusqliteError {
+    pub fn with_sql(e: rusqdoltlite::Error, sql: &str) -> Error {
+        Error::RusqDoltLiteError {
             query: String::from(sql),
             err: e,
         }
@@ -91,18 +91,21 @@ impl Error {
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Error::RusqliteError { query, err: e } => write!(
+            Error::RusqDoltLiteError { query, err: e } => write!(
                 f,
-                "rusqlite_migration error while executing query '{query}': {e}"
+                "rusqdoltlite_migration error while executing query '{query}': {e}"
             ),
             Error::SpecifiedSchemaVersion(e) => {
                 write!(f, "error with the specified schema version: {e}")
             }
             Error::MigrationDefinition(e) => {
-                write!(f, "rusqlite_migration error in migrations definition: {e}")
+                write!(
+                    f,
+                    "rusqdoltlite_migration error in migrations definition: {e}"
+                )
             }
             Error::ForeignKeyCheck(vec) => {
-                writeln!(f, "rusqlite_migration error on foreign key check:")?;
+                writeln!(f, "rusqdoltlite_migration error on foreign key check:")?;
                 for row in vec {
                     let ForeignKeyCheckError {
                         table,
@@ -116,15 +119,18 @@ impl fmt::Display for Error {
             }
             Error::Unrecognized(ref e) => write!(
                 f,
-                "rusqlite_migration unknown error (the library might be out of date): {e}"
+                "rusqdoltlite_migration unknown error (the library might be out of date): {e}"
             ),
-            Error::Hook(e) => write!(f, "rusqlite_migration error in migration hook: {e}"),
+            Error::Hook(e) => write!(f, "rusqdoltlite_migration error in migration hook: {e}"),
             Error::FileLoad(e) => write!(
                 f,
-                "rusqlite error while loading migrations from directory: {e}"
+                "rusqdoltlite error while loading migrations from directory: {e}"
             ),
             Error::InvalidUserVersion => {
-                write!(f, "rusqlite_migration error: invalid user version received")
+                write!(
+                    f,
+                    "rusqdoltlite_migration error: invalid user version received"
+                )
             }
         }
     }
@@ -133,7 +139,7 @@ impl fmt::Display for Error {
 impl std::error::Error for Error {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match self {
-            Error::RusqliteError { query: _, err } => Some(err),
+            Error::RusqDoltLiteError { query: _, err } => Some(err),
             Error::SpecifiedSchemaVersion(e) => Some(e),
             Error::MigrationDefinition(e) => Some(e),
             Error::ForeignKeyCheck(vec) => Some(vec.first()?),
@@ -143,9 +149,9 @@ impl std::error::Error for Error {
     }
 }
 
-impl From<rusqlite::Error> for Error {
-    fn from(e: rusqlite::Error) -> Error {
-        Error::RusqliteError {
+impl From<rusqdoltlite::Error> for Error {
+    fn from(e: rusqdoltlite::Error) -> Error {
+        Error::RusqDoltLiteError {
             query: String::new(),
             err: e,
         }
@@ -195,7 +201,7 @@ pub enum MigrationDefinitionError {
     },
     /// Attempt to migrate when no migrations are defined
     NoMigrationsDefined,
-    /// Attempt to migrate when the database is currently at a higher migration level (see <https://github.com/cljoly/rusqlite_migration/issues/17>)
+    /// Attempt to migrate when the database is currently at a higher migration level (see <https://github.com/cljoly/rusqdoltlite_migration/issues/17>)
     DatabaseTooFarAhead,
 }
 
@@ -248,27 +254,27 @@ impl fmt::Display for ForeignKeyCheckError {
 
 impl std::error::Error for ForeignKeyCheckError {}
 
-/// Error enum with rusqlite or hook-specified errors.
+/// Error enum with rusqdoltlite or hook-specified errors.
 #[derive(Debug, PartialEq)]
 #[allow(clippy::enum_variant_names)]
 #[non_exhaustive]
 pub enum HookError {
-    /// Rusqlite error, query may indicate the attempted SQL query
-    RusqliteError(rusqlite::Error),
+    /// RusqDoltLite error, query may indicate the attempted SQL query
+    RusqDoltLiteError(rusqdoltlite::Error),
     /// Error returned by the hook
     Hook(String),
 }
 
-impl From<rusqlite::Error> for HookError {
-    fn from(e: rusqlite::Error) -> HookError {
-        HookError::RusqliteError(e)
+impl From<rusqdoltlite::Error> for HookError {
+    fn from(e: rusqdoltlite::Error) -> HookError {
+        HookError::RusqDoltLiteError(e)
     }
 }
 
 impl From<HookError> for Error {
     fn from(e: HookError) -> Error {
         match e {
-            HookError::RusqliteError(err) => Error::with_sql(err, ""),
+            HookError::RusqDoltLiteError(err) => Error::with_sql(err, ""),
             HookError::Hook(s) => Error::Hook(s),
         }
     }

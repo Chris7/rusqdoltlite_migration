@@ -1,5 +1,5 @@
 [package]
-name = "rusqlite_migration_tests"
+name = "rusqdoltlite_migration_tests"
 edition = "2018"
 readme = "README.md"
 publish = false
@@ -7,7 +7,6 @@ publish = false
 authors.workspace = true
 categories.workspace = true
 description.workspace = true
-homepage.workspace = true
 keywords.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -16,9 +15,9 @@ version.workspace = true
 
 [dependencies]
 log = "0.4"
-rusqlite = { workspace = true, features = ["extra_check"] }
+rusqdoltlite = { workspace = true, features = ["extra_check"] }
 
-[dependencies.rusqlite_migration]
+[dependencies.rusqdoltlite_migration]
 path = "../rusqlite_migration"
 features = ["from-directory"]
 

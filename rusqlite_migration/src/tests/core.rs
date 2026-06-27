@@ -15,7 +15,7 @@
 
 use std::{iter::FromIterator, num::NonZeroUsize};
 
-use rusqlite::{Connection, OpenFlags, Transaction};
+use rusqdoltlite::{Connection, OpenFlags, Transaction};
 
 use crate::tests::helpers::all_valid_down;
 use crate::{
@@ -64,7 +64,7 @@ fn min_migrations_test() {
 
     crate::set_user_version(&conn, 0).unwrap();
 
-    // The rest of the test also ascertain the behavior of SQLite (and rusqlite)
+    // The rest of the test also ascertain the behavior of SQLite (and rusqdoltlite)
 
     raw_set_user_version(&mut conn, -3);
     assert_eq!(
@@ -247,7 +247,7 @@ fn invalid_migration_multiple_statement_test() {
     let migrations = Migrations::new(vec![m_valid0_up(), m_invalid1()]);
     assert!(matches!(
         dbg!(migrations.validate()),
-        Err(Error::RusqliteError { query: _, err: _ })
+        Err(Error::RusqDoltLiteError { query: _, err: _ })
     ));
 }
 
@@ -287,7 +287,7 @@ fn test_read_only_db_all_valid() {
 
 // If we encounter a database with a migration number higher than the number of defined migration,
 // we should return an error, not panic.
-// See https://github.com/cljoly/rusqlite_migration/issues/17
+// See https://github.com/cljoly/rusqdoltlite_migration/issues/17
 #[test]
 fn current_version_gt_max_schema_version_test() {
     let mut conn = Connection::open_in_memory().unwrap();
@@ -340,7 +340,7 @@ fn hook_test() {
                     let compressed = &text[..text.len() / 2];
                     tx.execute(
                         "UPDATE novels SET compressed = ?1 WHERE rowid = ?2;",
-                        rusqlite::params![compressed, rowid],
+                        rusqdoltlite::params![compressed, rowid],
                     )?;
                 }
 

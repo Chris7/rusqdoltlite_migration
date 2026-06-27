@@ -269,7 +269,7 @@ dependencies = [
  "log",
  "mktemp",
  "rusqdoltlite",
- "rusqlite_migration",
+ "rusqdoltlite_migration",
  "tokio",
 ]
 
@@ -283,7 +283,7 @@ dependencies = [
  "log",
  "mktemp",
  "rusqdoltlite",
- "rusqlite_migration",
+ "rusqdoltlite_migration",
 ]
 
 [[package]]
@@ -295,7 +295,7 @@ dependencies = [
  "log",
  "mktemp",
  "rusqdoltlite",
- "rusqlite_migration",
+ "rusqdoltlite_migration",
 ]
 
 [[package]]
@@ -765,7 +765,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rusqlite_migration"
+name = "rusqdoltlite_migration"
 version = "2.6.0"
 dependencies = [
  "anyhow",
@@ -778,18 +778,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "rusqlite_migration_benches"
+name = "rusqdoltlite_migration_benches"
 version = "2.6.0"
 dependencies = [
  "criterion",
  "iai",
  "include_dir",
  "rusqdoltlite",
- "rusqlite_migration",
+ "rusqdoltlite_migration",
 ]
 
 [[package]]
-name = "rusqlite_migration_tests"
+name = "rusqdoltlite_migration_tests"
 version = "2.6.0"
 dependencies = [
  "anyhow",
@@ -798,7 +798,7 @@ dependencies = [
  "log",
  "mktemp",
  "rusqdoltlite",
- "rusqlite_migration",
+ "rusqdoltlite_migration",
 ]
 
 [[package]]

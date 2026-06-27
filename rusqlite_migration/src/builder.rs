@@ -34,7 +34,7 @@ impl<'u> MigrationsBuilder<'u> {
     /// # Example
     ///
     /// ```
-    /// use rusqlite_migration::{Migrations, MigrationsBuilder};
+    /// use rusqdoltlite_migration::{Migrations, MigrationsBuilder};
     /// use include_dir::{Dir, include_dir};
     ///
     /// static MIGRATION_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/../examples/from-directory/migrations");

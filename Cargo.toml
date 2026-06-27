@@ -1,8 +1,8 @@
 [workspace.package]
 authors = ["Chris Mitchell"]
 categories = ["database"]
-description = "A fork of rusqlite_migration to use rusqdoltlite instead."
-keywords = ["rusqlite", "sqlite", "user_version", "database", "migration"]
+description = "A fork of rusqdoltlite_migration to use rusqdoltlite instead."
+keywords = ["rusqdoltlite", "sqlite", "user_version", "database", "migration"]
 license = "Apache-2.0"
 repository = "https://github.com/chris7/rusqdoltlite_migration"
 documentation = "https://docs.rs/rusqdoltlite_migration/"
@@ -23,7 +23,7 @@ resolver = "2"
 unsafe_code = "forbid"
 missing_docs = "warn"
 
-[workspace.dependencies.rusqlite]
+[workspace.dependencies.rusqdoltlite]
 package = "rusqdoltlite"
 version = "0.40.1"
 default-features = false

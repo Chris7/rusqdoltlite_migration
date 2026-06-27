@@ -9,9 +9,9 @@ log = "0.4"
 anyhow = "1"
 mktemp = "0.5"
 include_dir = "0.7.4"
-rusqlite = { workspace = true }
+rusqdoltlite = { workspace = true }
 
-[dependencies.rusqlite_migration]
+[dependencies.rusqdoltlite_migration]
 path = "../../rusqlite_migration"
 features = ["from-directory"]
 

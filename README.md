@@ -1,10 +1,10 @@
 <!-- insert
 ---
-title: "Rusqlite Migration"
+title: "RusqDoltLite Migration"
 date: 2021-08-21T15:32:05
-description: "↕️ Simple database schema migration library for rusqlite, written with performance in mind."
+description: "↕️ Simple database schema migration library for rusqdoltlite, written with performance in mind."
 aliases:
-- /rusqlite-migration
+- /rusqdoltlite-migration
 tags:
 - Rust
 - SQLite
@@ -15,7 +15,7 @@ end_insert -->
 <!-- remove -->
 <div align="center">
 
-# Rusqlite Migration
+# RusqDoltLite Migration
 <!-- end_remove -->
 
 <!-- rustdoc start -->
@@ -28,11 +28,11 @@ end_insert -->
 {{< /rawhtml >}}
 end_insert -->
 
-[![docs.rs](https://img.shields.io/docsrs/rusqlite_migration)][docs]
-[![Crates.io](https://img.shields.io/crates/v/rusqlite_migration)][cio]
+[![docs.rs](https://img.shields.io/docsrs/rusqdoltlite_migration)][docs]
+[![Crates.io](https://img.shields.io/crates/v/rusqdoltlite_migration)][cio]
 [![Changelog](https://img.shields.io/badge/-Changelog-purple)][changelog]
 [![unsafe forbidden](https://img.shields.io/badge/unsafe-forbidden-success.svg)][safety-dance]
-[![Coveralls](https://img.shields.io/coverallsCoverage/github/cljoly/rusqlite_migration)][coveralls]
+[![Coveralls](https://img.shields.io/coverallsCoverage/github/cljoly/rusqdoltlite_migration)][coveralls]
 
 <!-- insert
 {{< rawhtml >}}
@@ -42,23 +42,23 @@ end_insert -->
 {{< /rawhtml >}}
 end_insert -->
 
-Rusqlite Migration is a performant and simple schema migration library for [rusqlite](https://crates.io/crates/rusqlite).
+RusqDoltLite Migration is a performant and simple schema migration library for [rusqdoltlite](https://crates.io/crates/rusqdoltlite).
 
 * **Performance**:
     * *Fast database opening*: to keep track of the current migration state, most tools create one or more tables in the database. These tables require parsing by SQLite and are queried with SQL statements. This library uses the [`user_version`][uv] value instead. It’s much lighter as it is just an integer at a [fixed offset][uv_offset] in the SQLite file.
     * *Fast compilation*: this crate is very small and does not use macros to define the migrations.
-* **Simplicity**: this crate strives for simplicity. Just define a set of SQL statements as strings in your Rust code. Add more SQL statements over time as needed. No external CLI required. Additionally, rusqlite_migration works especially well with other small libraries complementing rusqlite, like [serde_rusqlite][].
+* **Simplicity**: this crate strives for simplicity. Just define a set of SQL statements as strings in your Rust code. Add more SQL statements over time as needed. No external CLI required.
 
 ## Example
 
 Here, we define SQL statements to run with [`Migrations::new()`][migrations_new] and run these (if necessary) with [`Migrations::to_latest()`][migrations_to_latest].
 
-[migrations_new]: https://docs.rs/rusqlite_migration/latest/rusqlite_migration/struct.Migrations.html#method.new
-[migrations_to_latest]: https://docs.rs/rusqlite_migration/latest/rusqlite_migration/struct.Migrations.html#method.to_latest
+[migrations_new]: https://docs.rs/rusqdoltlite_migration/latest/rusqdoltlite_migration/struct.Migrations.html#method.new
+[migrations_to_latest]: https://docs.rs/rusqdoltlite_migration/latest/rusqdoltlite_migration/struct.Migrations.html#method.to_latest
 
 ``` rust
-use rusqlite::{params, Connection};
-use rusqlite_migration::{Migrations, M};
+use rusqdoltlite::{params, Connection};
+use rusqdoltlite_migration::{Migrations, M};
 
 // 1️⃣ Define migrations
 const MIGRATIONS_SLICE: &[M<'_>] = &[
@@ -84,7 +84,7 @@ fn main() {
 }
 ```
 
-Please see the [examples](https://github.com/cljoly/rusqlite_migrate/tree/master/examples) folder for more, in particular:
+Please see the [examples](https://github.com/chris7/rusqdoltlite_migration/tree/master/examples) folder for more, in particular:
 - migrations with multiple SQL statements (using for instance `r#"…"` or `include_str!(…)`)
 - migrations defined [from a directory][from_dir] with SQL files
 - migrations to [previous versions (downward migrations)][generic_example]
@@ -119,7 +119,7 @@ fn migrations_insta_snapshot() {
 
 ## Optional Features
 
-Rusqlite migration provides several [Cargo features][cargo_features]. They are:
+RusqDoltLite migration provides several [Cargo features][cargo_features]. They are:
 
 * `from-directory`: enable loading migrations from *.sql files in a given directory
 
@@ -133,7 +133,7 @@ Rusqlite migration provides several [Cargo features][cargo_features]. They are:
 {{< /rawhtml >}}
 end_insert -->
 
-[![Crates.io Downloads](https://img.shields.io/crates/d/rusqlite_migration?style=social)][cio] [![Crates.io Downloads (recent)](https://img.shields.io/crates/dr/rusqlite_migration?style=social)][cio]
+[![Crates.io Downloads](https://img.shields.io/crates/d/rusqdoltlite_migration?style=social)][cio] [![Crates.io Downloads (recent)](https://img.shields.io/crates/dr/rusqdoltlite_migration?style=social)][cio]
 
 <!-- insert
 {{< rawhtml >}}
@@ -150,7 +150,7 @@ A number of contributors are also reporting issues as they arise, another indica
 
 ## Minimum Supported Rust Version (MSRV)
 
-This crate extends rusqlite and as such is tightly integrated with it. Thus, it supports the [same MSRV][msrv] as rusqlite. At the time of writing, this means:
+This crate extends rusqdoltlite and as such is tightly integrated with it. Thus, it supports the [same MSRV][msrv] as rusqdoltlite. At the time of writing, this means:
 
 > Latest stable Rust version at the time of release. It might compile with older versions.
 
@@ -174,26 +174,25 @@ I would like to thank all the contributors, as well as the authors of the depend
 
 Thanks to [Migadu](https://www.migadu.com/) for offering a discounted service to support this project. It is not an endorsement by Migadu though.
 
-[deps]: https://deps.rs/crate/rusqlite_migration
-[changelog]: https://cj.rs/rusqlite_migration/changelog
-[coveralls]: https://coveralls.io/github/cljoly/rusqlite_migration
+[deps]: https://deps.rs/crate/rusqdoltlite_migration
+[changelog]: https://cj.rs/rusqdoltlite_migration/changelog
+[coveralls]: https://coveralls.io/github/cljoly/rusqdoltlite_migration
 [safety-dance]: https://github.com/rust-secure-code/safety-dance/
-[cio]: https://crates.io/crates/rusqlite_migration
-[cio_reverse]: https://crates.io/crates/rusqlite_migration/reverse_dependencies
-[lrs_reverse]: https://lib.rs/crates/rusqlite_migration/rev
-[gh_reverse]: https://github.com/cljoly/rusqlite_migration/network/dependents?dependent_type=REPOSITORY
+[cio]: https://crates.io/crates/rusqdoltlite_migration
+[cio_reverse]: https://crates.io/crates/rusqdoltlite_migration/reverse_dependencies
+[lrs_reverse]: https://lib.rs/crates/rusqdoltlite_migration/rev
+[gh_reverse]: https://github.com/cljoly/rusqdoltlite_migration/network/dependents?dependent_type=REPOSITORY
 [contributing]: https://cj.rs/docs/contribute/
 [diesel_migrations]: https://crates.io/crates/diesel_migrations
 [pgfine]: https://crates.io/crates/pgfine
 [movine]: https://crates.io/crates/movine
 [uv]: https://sqlite.org/pragma.html#pragma_user_version
 [uv_offset]: https://www.sqlite.org/fileformat.html#user_version_number
-[serde_rusqlite]: https://crates.io/crates/serde_rusqlite
 [cargo-insta]: https://crates.io/crates/cargo-insta
 [cargo-mutants]: https://mutants.rs/installation.html
 [cheat]: https://cj.rs/blog/sqlite-pragma-cheatsheet-for-performance-and-consistency/
-[docs]: https://docs.rs/rusqlite_migration
-[msrv]: https://github.com/rusqlite/rusqlite?tab=readme-ov-file#minimum-supported-rust-version-msrv
-[from_dir]: https://github.com/cljoly/rusqlite_migration/tree/master/examples/from-directory
-[generic_example]: https://github.com/cljoly/rusqlite_migration/blob/master/examples/simple/src/main.rs
-[quick_start_async]: https://github.com/cljoly/rusqlite_migration/blob/master/examples/async/src/main.rs
+[docs]: https://docs.rs/rusqdoltlite_migration
+[msrv]: https://github.com/rusqdoltlite/rusqdoltlite?tab=readme-ov-file#minimum-supported-rust-version-msrv
+[from_dir]: https://github.com/cljoly/rusqdoltlite_migration/tree/master/examples/from-directory
+[generic_example]: https://github.com/cljoly/rusqdoltlite_migration/blob/master/examples/simple/src/main.rs
+[quick_start_async]: https://github.com/cljoly/rusqdoltlite_migration/blob/master/examples/async/src/main.rs

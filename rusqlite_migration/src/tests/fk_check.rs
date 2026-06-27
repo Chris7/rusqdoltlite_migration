@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-use rusqlite::Connection;
+use rusqdoltlite::Connection;
 
 use crate::fk_check::FKCheck;
 use crate::tests::helpers::{m_invalid_fk, m_invalid_fk_down, m_valid0_up, m_valid_fk_up};

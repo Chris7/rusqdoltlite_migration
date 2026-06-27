@@ -15,8 +15,8 @@
 
 use std::num::NonZeroUsize;
 
-use rusqlite::{params, Connection};
-use rusqlite_migration::{MigrationDefinitionError, Migrations, SchemaVersion, M};
+use rusqdoltlite::{params, Connection};
+use rusqdoltlite_migration::{MigrationDefinitionError, Migrations, SchemaVersion, M};
 
 #[test]
 fn main_test() {
@@ -175,7 +175,7 @@ fn test_errors() {
 
         // boom
         assert_eq!(
-            Err(rusqlite_migration::Error::MigrationDefinition(
+            Err(rusqdoltlite_migration::Error::MigrationDefinition(
                 MigrationDefinitionError::DownNotDefined { migration_index: 1 }
             )),
             migrations.to_version(&mut conn, 1)

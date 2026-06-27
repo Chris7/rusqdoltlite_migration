@@ -1,6 +1,6 @@
 <!-- insert
 ---
-title: "Rusqlite Changelog"
+title: "RusqDoltLite Changelog"
 date: 2025-03-24T20:32:05
 tags:
 - Rust
@@ -14,26 +14,26 @@ end_insert -->
 <!-- end_remove -->
 
 <!-- insert
-Release notes for the [rusqlite_migration library](https://cj.rs/rusqlite_migration).
+Release notes for the [rusqdoltlite_migration library](https://cj.rs/rusqdoltlite_migration).
 end_insert -->
 
 ## Version 2.6.0
 
 ### Dependencies
 
-Rusqlite was updated from 0.39.0 to 0.40.0.
-Please see [the release notes for 0.40.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.40.0).
+RusqDoltLite was updated from 0.39.0 to 0.40.0.
+Please see [the release notes for 0.40.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.40.0).
 There are in paricular quite a few breaking changes around VTab APIs.
 
 Update other dev dependencies, see git history for details.
-Also factored out the rusqlite package dependency details into the workspace-level Cargo.toml.
+Also factored out the rusqdoltlite package dependency details into the workspace-level Cargo.toml.
 
 ## Version 2.5.0
 
 ### Dependencies
 
-Rusqlite was updated from 0.38.0 to 0.39.0.
-Please see [the release notes for 0.39.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.39.0).
+RusqDoltLite was updated from 0.38.0 to 0.39.0.
+Please see [the release notes for 0.39.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.39.0).
 
 Update other dev dependencies, see git history for details.
 
@@ -51,14 +51,14 @@ Update some dev dependencies, see git history for details.
 
 ### Dependencies
 
-Rusqlite was updated from 0.37.0 to 0.38.0.
-Please see [the release notes for 0.38.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.38.0), there are a few breaking changes in this one.
+RusqDoltLite was updated from 0.37.0 to 0.38.0.
+Please see [the release notes for 0.38.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.38.0), there are a few breaking changes in this one.
 
 Update other dev dependencies, see git history for details.
 
 ### Features
 
-Rusqlite 0.38 makes the cache statement optional. This feature was used for [foreign key checks](https://docs.rs/rusqlite_migration/2.3.0/rusqlite_migration/struct.M.html#method.foreign_key_check). The `rusqlite_migration` library does not enable any features from rusqlite, not even the default one. This way, downstream users can freely chose which feature to enable based on their needs. As a result, `rusqlite_migration` now handles statement caching for foreign key checks internally now. As side benefit, this also makes caching more efficient: the prepared statement is kept for the minimum time where it is needed and freed immediately, without taking space in the global cache used by rusqlite.
+RusqDoltLite 0.38 makes the cache statement optional. This feature was used for [foreign key checks](https://docs.rs/rusqdoltlite_migration/2.3.0/rusqdoltlite_migration/struct.M.html#method.foreign_key_check). The `rusqdoltlite_migration` library does not enable any features from rusqdoltlite, not even the default one. This way, downstream users can freely chose which feature to enable based on their needs. As a result, `rusqdoltlite_migration` now handles statement caching for foreign key checks internally now. As side benefit, this also makes caching more efficient: the prepared statement is kept for the minimum time where it is needed and freed immediately, without taking space in the global cache used by rusqdoltlite.
 
 ### Other
 
@@ -71,8 +71,8 @@ Rusqlite 0.38 makes the cache statement optional. This feature was used for [for
 
 ### Dependencies
 
-Rusqlite was updated from 0.36.0 to 0.37.0.
-Please see [the release notes for 0.37.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.37.0).
+RusqDoltLite was updated from 0.36.0 to 0.37.0.
+Please see [the release notes for 0.37.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.37.0).
 
 ### Other
 
@@ -90,8 +90,8 @@ Please see [the release notes for 0.37.0](https://github.com/rusqlite/rusqlite/r
 
 ### Dependencies
 
-Rusqlite was updated from 0.35.0 to 0.36.0.
-Please see [the release notes for 0.36.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.36.0).
+RusqDoltLite was updated from 0.35.0 to 0.36.0.
+Please see [the release notes for 0.36.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.36.0).
 
 ### Other
 
@@ -108,8 +108,8 @@ Please see [the release notes for 0.36.0](https://github.com/rusqlite/rusqlite/r
 
 ### Dependencies
 
-Rusqlite was updated from 0.35.0 to 0.36.0.
-Please see [the release notes for 0.36.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.36.0).
+RusqDoltLite was updated from 0.35.0 to 0.36.0.
+Please see [the release notes for 0.36.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.36.0).
 
 ### Other
 
@@ -122,25 +122,25 @@ Please see [the release notes for 0.36.0](https://github.com/rusqlite/rusqlite/r
 
 ### Dependencies
 
-Rusqlite was updated from 0.34.0 to 0.34.0.
-Please see [the release notes for 0.35.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.35.0).
+RusqDoltLite was updated from 0.34.0 to 0.34.0.
+Please see [the release notes for 0.35.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.35.0).
 
 ## Version 2.0.0
 
 ### Breaking changes
 
-#### Remove the `alpha-async-tokio-rusqlite` Feature
+#### Remove the `alpha-async-tokio-rusqdoltlite` Feature
 
 As the name of the feature suggest, we have had experimental support for async using tokio for a while now. Supporting that feature has been quite a big burden, introducing some duplicated code in the `AsyncMigrations` struct in particular, as well as a whole set of very similar tests. Plus the benefit of async is limited here, because everything gets executed in a blocking fashion in sqlite anyway.
 
-It turns out that we don’t need the async support in rusqlite_migration for folks to use async libraries. For instance, with tokio-rusqlite, you can define migrations like in the sync context and run:
+It turns out that we don’t need the async support in rusqdoltlite_migration for folks to use async libraries. For instance, with tokio-rusqdoltlite, you can define migrations like in the sync context and run:
 ```rust
     async_conn
         .call_unwrap(|conn| MIGRATIONS.to_latest(conn))
         .await?;
 ```
 
-See [the updated async example](https://github.com/cljoly/rusqlite_migration/blob/master/examples/async/src/main.rs) for details, in particular why it’s fine to call [a method](https://docs.rs/tokio-rusqlite/0.6.0/tokio_rusqlite/struct.Connection.html#method.call_unwrap) with unwrap in its name.
+See [the updated async example](https://github.com/chris7/rusqdoltlite_migration/blob/master/examples/async/src/main.rs) for details.
 
 #### Make the Builder `Finalizer` Method Not Generic
 
@@ -159,46 +159,46 @@ This function has been deprecated for a while now, remove it as a part of the ma
 
 ### Features
 
-- Add the new [`Migrations::from_slice`](https://docs.rs/rusqlite_migration/2.0.0-beta.1/rusqlite_migration/struct.Migrations.html#method.from_slice) constructor, which is `const` and takes a slice, so that it can be constructed in global constant, without using `LazyLock` or similar. Internally, this is possible because we now use a [`Cow`](https://doc.rust-lang.org/std/borrow/enum.Cow.html) structure to hold migrations.
-- Add [`Migrations::pending_migrations`](https://docs.rs/rusqlite_migration/2.0.0-beta.1/rusqlite_migration/struct.Migrations.html#method.pending_migrations) which returns the number of migrations that would be applied. This is mostly useful to take a backup of the database prior to applying migrations (and do nothing if no migrations will be applied).
+- Add the new [`Migrations::from_slice`](https://docs.rs/rusqdoltlite_migration/2.0.0-beta.1/rusqdoltlite_migration/struct.Migrations.html#method.from_slice) constructor, which is `const` and takes a slice, so that it can be constructed in global constant, without using `LazyLock` or similar. Internally, this is possible because we now use a [`Cow`](https://doc.rust-lang.org/std/borrow/enum.Cow.html) structure to hold migrations.
+- Add [`Migrations::pending_migrations`](https://docs.rs/rusqdoltlite_migration/2.0.0-beta.1/rusqdoltlite_migration/struct.Migrations.html#method.pending_migrations) which returns the number of migrations that would be applied. This is mostly useful to take a backup of the database prior to applying migrations (and do nothing if no migrations will be applied).
 
 
 ### Dependencies
 
-Rusqlite was updated from 0.32.1 to 0.34.0.
-Please see [the release notes for 0.34.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.34.0) and
-[the release notes for 0.33.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.33.0).
-Tokio Rusqlite was removed as a dependency.
+RusqDoltLite was updated from 0.32.1 to 0.34.0.
+Please see [the release notes for 0.34.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.34.0) and
+[the release notes for 0.33.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.33.0).
+Tokio RusqDoltLite was removed as a dependency.
 
 ### Minimum Rust Version
 
 Rust 1.84.
 
-Moving forward, we expect to keep this aligned with rusqlite itself, now that it has a [policy](https://github.com/rusqlite/rusqlite?tab=readme-ov-file#minimum-supported-rust-version-msrv) (introduced in [october 2024](https://github.com/rusqlite/rusqlite/pull/1576)).
+Moving forward, we expect to keep this aligned with rusqdoltlite itself, now that it has a [policy](https://github.com/rusqdoltlite/rusqdoltlite?tab=readme-ov-file#minimum-supported-rust-version-msrv) (introduced in [october 2024](https://github.com/rusqdoltlite/rusqdoltlite/pull/1576)).
 
 ## Version 2.0.0 Beta 1
 
 ### Features
 
-- Add the new [`Migrations::from_slice`](https://docs.rs/rusqlite_migration/2.0.0-beta.1/rusqlite_migration/struct.Migrations.html#method.from_slice) constructor, which is `const` and takes a slice, so that it can be constructed in global constant, without using `LazyLock` or similar. Internally, this is possible because we now use a [`Cow`](https://doc.rust-lang.org/std/borrow/enum.Cow.html) structure to hold migrations.
-- Add [`Migrations::pending_migrations`](https://docs.rs/rusqlite_migration/2.0.0-beta.1/rusqlite_migration/struct.Migrations.html#method.pending_migrations) which returns the number of migrations that would be applied. This is mostly useful to take a backup of the database prior to applying migrations (and do nothing if no migrations will be applied).
+- Add the new [`Migrations::from_slice`](https://docs.rs/rusqdoltlite_migration/2.0.0-beta.1/rusqdoltlite_migration/struct.Migrations.html#method.from_slice) constructor, which is `const` and takes a slice, so that it can be constructed in global constant, without using `LazyLock` or similar. Internally, this is possible because we now use a [`Cow`](https://doc.rust-lang.org/std/borrow/enum.Cow.html) structure to hold migrations.
+- Add [`Migrations::pending_migrations`](https://docs.rs/rusqdoltlite_migration/2.0.0-beta.1/rusqdoltlite_migration/struct.Migrations.html#method.pending_migrations) which returns the number of migrations that would be applied. This is mostly useful to take a backup of the database prior to applying migrations (and do nothing if no migrations will be applied).
 
 ## Version 2.0.0 Alpha 1
 
 ### Breaking changes
 
-#### Remove the `alpha-async-tokio-rusqlite` Feature
+#### Remove the `alpha-async-tokio-rusqdoltlite` Feature
 
 As the name of the feature suggest, we have had experimental support for async using tokio for a while now. Supporting that feature has been quite a big burden, introducing some duplicated code in the `AsyncMigrations` struct in particular, as well as a whole set of very similar tests. Plus the benefit of async is limited here, because everything gets executed in a blocking fashion in sqlite anyway.
 
-It turns out that we don’t need the async support in rusqlite_migration for folks to use async libraries. For instance, with tokio-rusqlite, you can define migrations like in the sync context and run:
+It turns out that we don’t need the async support in rusqdoltlite_migration for folks to use async libraries. For instance, with tokio-rusqdoltlite, you can define migrations like in the sync context and run:
 ```rust
     async_conn
         .call_unwrap(|conn| MIGRATIONS.to_latest(conn))
         .await?;
 ```
 
-See [the updated async example](https://github.com/cljoly/rusqlite_migration/blob/master/examples/async/src/main.rs) for details, in particular why it’s fine to call [a method](https://docs.rs/tokio-rusqlite/0.6.0/tokio_rusqlite/struct.Connection.html#method.call_unwrap) with unwrap in its name.
+See [the updated async example](https://github.com/chris7/rusqdoltlite_migration/blob/master/examples/async/src/main.rs) for details.
 
 #### Make the Builder `Finalizer` Method Not Generic
 
@@ -217,10 +217,10 @@ This function has been deprecated for a while now, remove it as a part of the ma
 
 ### Dependencies
 
-Rusqlite was updated from 0.32.1 to 0.34.0.
-Please see [the release notes for 0.34.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.34.0) and
-[the release notes for 0.33.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.33.0).
-Tokio Rusqlite was removed as a dependency.
+RusqDoltLite was updated from 0.32.1 to 0.34.0.
+Please see [the release notes for 0.34.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.34.0) and
+[the release notes for 0.33.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.33.0).
+Tokio RusqDoltLite was removed as a dependency.
 
 ### Features
 
@@ -230,7 +230,7 @@ Tokio Rusqlite was removed as a dependency.
 
 Rust 1.84.
 
-Moving forward, we expect to keep this aligned with rusqlite itself, now that it has a [policy](https://github.com/rusqlite/rusqlite?tab=readme-ov-file#minimum-supported-rust-version-msrv) (introduced in [october 2024](https://github.com/rusqlite/rusqlite/pull/1576)).
+Moving forward, we expect to keep this aligned with rusqdoltlite itself, now that it has a [policy](https://github.com/rusqdoltlite/rusqdoltlite?tab=readme-ov-file#minimum-supported-rust-version-msrv) (introduced in [october 2024](https://github.com/rusqdoltlite/rusqdoltlite/pull/1576)).
 
 ## Version 1.3.1
 
@@ -241,11 +241,11 @@ The only change is a fix to the deps.rs badge in the documentation.
 > [!NOTE]
 > The code of this version is identical to [Version 1.3.0 Beta 1](#version-130-beta-1)
 
-Rusqlite was updated from 0.31.0 to 0.32.1.
-Please see [the release notes for 0.32.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.0) and
-[for 0.32.1](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.1).
-Tokio Rusqlite was updated from 0.5.1 to 0.6.0.
-Please see the [release notes](https://github.com/programatik29/tokio-rusqlite/releases/tag/v0.6.0).
+RusqDoltLite was updated from 0.31.0 to 0.32.1.
+Please see [the release notes for 0.32.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.0) and
+[for 0.32.1](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.1).
+Tokio RusqDoltLite was updated from 0.5.1 to 0.6.0.
+Please see the [release notes](https://github.com/programatik29/tokio-rusqdoltlite/releases/tag/v0.6.0).
 
 ### Minimum Rust Version
 
@@ -253,7 +253,7 @@ Rust 1.77
 
 ### Documentation
 
-Various documentation improvements and clarification. In particular, call out that if a rusqlite error is encountered during a migration, the next migrations in the list are not applied.
+Various documentation improvements and clarification. In particular, call out that if a rusqdoltlite error is encountered during a migration, the next migrations in the list are not applied.
 
 ### Other
 
@@ -265,11 +265,11 @@ Various documentation improvements and clarification. In particular, call out th
 
 This reintroduces the async features temporarily removed from [Version 1.3.0 Alpha-Without-Tokio 1](#version-130-alpha-without-tokio-1)
 
-Rusqlite was updated from 0.31.0 to 0.32.1.
-Please see [the release notes for 0.32.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.0) and
-[for 0.32.1](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.1).
-Tokio Rusqlite was updated from 0.5.1 to 0.6.0.
-Please see the [release notes](https://github.com/programatik29/tokio-rusqlite/releases/tag/v0.6.0).
+RusqDoltLite was updated from 0.31.0 to 0.32.1.
+Please see [the release notes for 0.32.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.0) and
+[for 0.32.1](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.1).
+Tokio RusqDoltLite was updated from 0.5.1 to 0.6.0.
+Please see the [release notes](https://github.com/programatik29/tokio-rusqdoltlite/releases/tag/v0.6.0).
 
 ### Minimum Rust Version
 
@@ -277,7 +277,7 @@ Rust 1.77
 
 ### Documentation
 
-Various documentation improvements and clarification. In particular, call out that if a rusqlite error is encountered during a migration, the next migrations in the list are not applied.
+Various documentation improvements and clarification. In particular, call out that if a rusqdoltlite error is encountered during a migration, the next migrations in the list are not applied.
 
 ### Other
 
@@ -290,10 +290,10 @@ Various documentation improvements and clarification. In particular, call out th
 
 ### Major Changes
 
-This is an alpha version to start integrating rusqlite 0.32.1. Unfortunately, at this time, tokio-rusqlite is did not update to rusqlite 0.32.1. So we are temporarily removing the async features, while we figure out a way to bring them back. **To be clear, we intend to support the async features going forward, this is a temporary change in a specifically tagged version**.
+This is an alpha version to start integrating rusqdoltlite 0.32.1. Unfortunately, at this time, tokio-rusqdoltlite is did not update to rusqdoltlite 0.32.1. So we are temporarily removing the async features, while we figure out a way to bring them back. **To be clear, we intend to support the async features going forward, this is a temporary change in a specifically tagged version**.
 
-Rusqlite was updated from 0.31.0 to 0.32.1. Please see [the release notes for 0.32.0](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.0) and
-[for 0.32.1](https://github.com/rusqlite/rusqlite/releases/tag/v0.32.1)
+RusqDoltLite was updated from 0.31.0 to 0.32.1. Please see [the release notes for 0.32.0](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.0) and
+[for 0.32.1](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.32.1)
 
 ### Minimum Rust Version
 
@@ -301,7 +301,7 @@ Rust 1.77
 
 ### Documentation
 
-Various documentation improvements and clarification. In particular, call out that if a rusqlite error is encountered during a migration, the next migrations in the list are not applied.
+Various documentation improvements and clarification. In particular, call out that if a rusqdoltlite error is encountered during a migration, the next migrations in the list are not applied.
 
 ### Other
 
@@ -331,7 +331,7 @@ No new features.
 
 ### Other
 
-- Update rusqlite to 0.31
+- Update rusqdoltlite to 0.31
 - Update various development dependencies
 - Improve CI build time
 - Impove documentation
@@ -339,7 +339,7 @@ No new features.
 
 ### See also
 
-Rusqlite was updated from 0.30 to 0.31. Please see [its release notes](https://github.com/rusqlite/rusqlite/releases/tag/v0.31.0)
+RusqDoltLite was updated from 0.30 to 0.31. Please see [its release notes](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.31.0)
 
 
 ## Version 1.1.0
@@ -352,11 +352,11 @@ Rust 1.70
 
 ### New Features
 
-* Support for tokio-rusqlite behind the feature named `alpha-async-tokio-rusqlite`thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqlite_migration/tree/c54951d22691432fbfd511cc68f1c5b8a2306737/examples/async). This feature is alpha, meaning that compatibility in future minor versions is not guaranteed.
-* Create migrations from directories holding SQL files thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
-* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
-* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
-* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
+* Support for tokio-rusqdoltlite behind the feature named `alpha-async-tokio-rusqdoltlite`thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqdoltlite_migration/tree/c54951d22691432fbfd511cc68f1c5b8a2306737/examples/async). This feature is alpha, meaning that compatibility in future minor versions is not guaranteed.
+* Create migrations from directories holding SQL files thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqdoltlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
+* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
+* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
+* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
 * Make `Migrations` serializable (using the Debug serializer) with [insta](https://insta.rs).
 
 ### Depreciation
@@ -377,7 +377,7 @@ Rust 1.70
 
 ### See also
 
-Rusqlite was updated from 0.29.0 to 0.30.0. Please see [its release notes](https://github.com/rusqlite/rusqlite/releases/tag/v0.30.0)
+RusqDoltLite was updated from 0.29.0 to 0.30.0. Please see [its release notes](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.30.0)
 
 ## Version 1.1.0 Beta 1
 
@@ -391,11 +391,11 @@ Rust 1.70
 
 ### New Features
 
-* Support for tokio-rusqlite behind the feature named `alpha-async-tokio-rusqlite`thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqlite_migration/tree/c54951d22691432fbfd511cc68f1c5b8a2306737/examples/async). This feature is alpha, meaning that compatibility in future minor versions is not guaranteed.
-* Create migrations from directories holding SQL files thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
-* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
-* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
-* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
+* Support for tokio-rusqdoltlite behind the feature named `alpha-async-tokio-rusqdoltlite`thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqdoltlite_migration/tree/c54951d22691432fbfd511cc68f1c5b8a2306737/examples/async). This feature is alpha, meaning that compatibility in future minor versions is not guaranteed.
+* Create migrations from directories holding SQL files thanks to [@czocher](https://github.com/czocher). See [the example](https://github.com/cljoly/rusqdoltlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
+* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
+* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
+* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
 * Make `Migrations` serializable (using the Debug serializer) with [insta](https://insta.rs).
 
 ### Depreciation
@@ -416,7 +416,7 @@ Rust 1.70
 
 ### See also
 
-Rusqlite was updated from 0.29.0 to 0.30.0. Please see [its release notes](https://github.com/rusqlite/rusqlite/releases/tag/v0.30.0)
+RusqDoltLite was updated from 0.29.0 to 0.30.0. Please see [its release notes](https://github.com/rusqdoltlite/rusqdoltlite/releases/tag/v0.30.0)
 
 ## Version 1.1.0 Alpha 2
 
@@ -428,7 +428,7 @@ Rust 1.64
 
 ### New Features
 
-* Create migrations from directories holding SQL files. See [the example](https://github.com/cljoly/rusqlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
+* Create migrations from directories holding SQL files. See [the example](https://github.com/cljoly/rusqdoltlite_migration/tree/af4da527ff75e3b8c089d2300cab7fbe66096411/examples/from-directory).
 
 ### Depreciation
 
@@ -455,11 +455,11 @@ Rust 1.61
 
 ### New Features
 
-* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
-  * The purpose of this release is to get feedback on the new API. Please feel free to comment on [this discussion](https://github.com/cljoly/rusqlite_migration/discussions/36)!
-* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
-  * Please beware of the [follow up work needed on this](https://github.com/cljoly/rusqlite_migration/issues/4#issuecomment-1166363260)
-* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
+* Add up/down hooks to run custom Rust code during migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/28) thanks to [@matze](https://github.com/matze))
+  * The purpose of this release is to get feedback on the new API. Please feel free to comment on [this discussion](https://github.com/cljoly/rusqdoltlite_migration/discussions/36)!
+* Add foreign_key_check method to migrations ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/20) thanks to [@Jokler](https://github.com/Jokler))
+  * Please beware of the [follow up work needed on this](https://github.com/cljoly/rusqdoltlite_migration/issues/4#issuecomment-1166363260)
+* Make `Migration` functions const ([PR](https://github.com/cljoly/rusqdoltlite_migration/pull/19) thanks to [@fkaa](https://github.com/fkaa))
 
 ### Other
 
@@ -473,7 +473,7 @@ Rust 1.61
 
 ### Bug fix
 
-* fix: adapt to rusqlite 0.29 and tighten dependency requirements for rusqlite (see [this discussion](https://github.com/cljoly/rusqlite_migration/issues/68#issuecomment-1485795284))
+* fix: adapt to rusqdoltlite 0.29 and tighten dependency requirements for rusqdoltlite (see [this discussion](https://github.com/cljoly/rusqdoltlite_migration/issues/68#issuecomment-1485795284))
 
 ## Version 1.0.1
 
@@ -498,7 +498,7 @@ Rust 1.61
 ## Version 0.5.1
 
 ### Potentially Breaking Changes
-- Update the `rusqlite` crate (to protect agaisnt [RUSTSEC-2020-0014](https://rustsec.org/advisories/RUSTSEC-2020-0014.html))
+- Update the `rusqdoltlite` crate (to protect agaisnt [RUSTSEC-2020-0014](https://rustsec.org/advisories/RUSTSEC-2020-0014.html))
 
 ### Other
 - Improve the documentation
@@ -551,5 +551,4 @@ Fix in readme, for crates.io
 
 - Various doc & CI improvements
 - Fix a case of failure with silent errors.
-
 

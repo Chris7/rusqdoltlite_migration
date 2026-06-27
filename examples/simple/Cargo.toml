@@ -5,12 +5,12 @@ edition = "2018"
 publish = false
 
 [dependencies]
-rusqlite_migration = { path = "../../rusqlite_migration" }
+rusqdoltlite_migration = { path = "../../rusqlite_migration" }
 log = "0.4"
 anyhow = "1"
 mktemp = "0.5"
 
-[dependencies.rusqlite]
+[dependencies.rusqdoltlite]
 workspace = true
 features = ["extra_check"] # A realistic use case
 

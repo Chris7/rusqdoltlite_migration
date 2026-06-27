@@ -17,8 +17,8 @@ use std::num::NonZeroUsize;
 
 use include_dir::{include_dir, Dir};
 
-use rusqlite::{params, Connection};
-use rusqlite_migration::{Error, Migrations, SchemaVersion};
+use rusqdoltlite::{params, Connection};
+use rusqdoltlite_migration::{Error, Migrations, SchemaVersion};
 
 static MIGRATIONS_DIR: Dir =
     include_dir!("$CARGO_MANIFEST_DIR/../examples/from-directory/migrations");

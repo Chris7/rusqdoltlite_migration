@@ -15,7 +15,7 @@
 
 use std::{iter::FromIterator, num::NonZeroUsize};
 
-use rusqlite::Connection;
+use rusqdoltlite::Connection;
 
 use crate::{Migrations, MigrationsBuilder, SchemaVersion, M};
 
