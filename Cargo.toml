@@ -1,12 +1,11 @@
 [workspace.package]
-authors = ["Clément Joly <foss@131719.xyz>"]
+authors = ["Chris Mitchell"]
 categories = ["database"]
-description = "Simple schema migration library for rusqlite using user_version instead of an SQL table to maintain the current schema version."
-homepage = "https://cj.rs/rusqlite_migration"
+description = "A fork of rusqlite_migration to use rusqdoltlite instead."
 keywords = ["rusqlite", "sqlite", "user_version", "database", "migration"]
 license = "Apache-2.0"
-repository = "https://github.com/cljoly/rusqlite_migration"
-documentation = "https://docs.rs/rusqlite_migration/"
+repository = "https://github.com/chris7/rusqdoltlite_migration"
+documentation = "https://docs.rs/rusqdoltlite_migration/"
 rust-version = "1.95"
 version = "2.6.0"
 
