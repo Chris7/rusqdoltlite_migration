@@ -445,9 +445,9 @@ checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "libdoltlite-sys"
-version = "0.38.2"
+version = "0.38.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c116a146912e4e3fd38f67a82754f15a0eedc27362ec22a04986401a7e2efa46"
+checksum = "cd39457ae1054136e0347b31e061c78fa74ad97441b2869a88ad66b01f48a2fb"
 dependencies = [
  "pkg-config",
  "vcpkg",
@@ -684,9 +684,9 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
 name = "rusqdoltlite"
-version = "0.40.2"
+version = "0.40.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0556e9faca04625c442e61c8c2875f1a5f4ffd3bcd9bbd01b0e0e899b5e142f"
+checksum = "aa6cd382665e6a4d0c128caea0b0ed878c86a337ced34038b6888e8dbe09b864"
 dependencies = [
  "bitflags",
  "fallible-iterator",
@@ -697,7 +697,7 @@ dependencies = [
 
 [[package]]
 name = "rusqdoltlite_migration"
-version = "2.6.1"
+version = "2.6.2"
 dependencies = [
  "anyhow",
  "env_logger",
@@ -710,7 +710,7 @@ dependencies = [
 
 [[package]]
 name = "rusqdoltlite_migration_benches"
-version = "2.6.1"
+version = "2.6.2"
 dependencies = [
  "criterion",
  "iai",
@@ -721,7 +721,7 @@ dependencies = [
 
 [[package]]
 name = "rusqdoltlite_migration_tests"
-version = "2.6.1"
+version = "2.6.2"
 dependencies = [
  "anyhow",
  "env_logger",
