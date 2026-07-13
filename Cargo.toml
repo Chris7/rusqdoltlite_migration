@@ -25,6 +25,6 @@ missing_docs = "warn"
 
 [workspace.dependencies.rusqdoltlite]
 package = "rusqdoltlite"
-version = "0.40.4"
+version = "0.40.5"
 default-features = false
 features = []
