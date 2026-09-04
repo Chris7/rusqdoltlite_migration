@@ -33,7 +33,7 @@ pub type Result<T, E = Error> = std::result::Result<T, E>;
 #[allow(clippy::enum_variant_names)]
 #[non_exhaustive]
 pub enum Error {
-    /// RusqDoltLite error, query may indicate the attempted SQL query
+    /// `RusqDoltLite` error, query may indicate the attempted SQL query
     RusqDoltLiteError {
         /// SQL query that caused the error
         query: String,
@@ -259,7 +259,7 @@ impl std::error::Error for ForeignKeyCheckError {}
 #[allow(clippy::enum_variant_names)]
 #[non_exhaustive]
 pub enum HookError {
-    /// RusqDoltLite error, query may indicate the attempted SQL query
+    /// `RusqDoltLite` error, query may indicate the attempted SQL query
     RusqDoltLiteError(rusqdoltlite::Error),
     /// Error returned by the hook
     Hook(String),

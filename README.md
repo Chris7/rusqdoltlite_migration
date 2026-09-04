@@ -42,7 +42,7 @@ end_insert -->
 {{< /rawhtml >}}
 end_insert -->
 
-RusqDoltLite Migration is a performant and simple schema migration library for [rusqdoltlite](https://crates.io/crates/rusqdoltlite).
+`RusqDoltLite` Migration is a performant and simple schema migration library for [rusqdoltlite](https://crates.io/crates/rusqdoltlite).
 
 * **Performance**:
     * *Fast database opening*: to keep track of the current migration state, most tools create one or more tables in the database. These tables require parsing by SQLite and are queried with SQL statements. This library uses the [`user_version`][uv] value instead. It’s much lighter as it is just an integer at a [fixed offset][uv_offset] in the SQLite file.
@@ -119,7 +119,7 @@ fn migrations_insta_snapshot() {
 
 ## Optional Features
 
-RusqDoltLite migration provides several [Cargo features][cargo_features]. They are:
+`RusqDoltLite` migration provides several [Cargo features][cargo_features]. They are:
 
 * `from-directory`: enable loading migrations from *.sql files in a given directory
 
