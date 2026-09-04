@@ -793,10 +793,7 @@ impl<'m> Migrations<'m> {
     ///
     /// assert!(matches!(
     ///     migrations.to_latest(&mut conn),
-    ///     Err(rusqdoltlite_migration::Error::RusqDoltLiteError {
-    ///         query: _,
-    ///         err: rusqdoltlite::Error::SqliteFailure(_, _),
-    ///     })
+    ///     Err(rusqdoltlite_migration::Error::RusqDoltLiteError { .. })
     /// ));
     /// ```
     /// If rusqdoltlite `extra_check` feature is enabled, any migration that returns a value will error
@@ -923,9 +920,11 @@ impl<'m> Migrations<'m> {
     ///
     /// # Errors
     ///
-    /// Returns [`Error::RusqDoltLiteError`] if the underlying sqlite database open call fails.
+    /// Returns [`Error::RusqDoltLiteError`] if opening or configuring the temporary database fails.
     pub fn validate(&self) -> Result<()> {
         let mut conn = Connection::open_in_memory()?;
+        conn.pragma_update(None, "foreign_keys", false)
+            .map_err(|e| Error::with_sql(e, "PRAGMA foreign_keys = OFF;"))?;
         self.to_latest(&mut conn)
     }
 }

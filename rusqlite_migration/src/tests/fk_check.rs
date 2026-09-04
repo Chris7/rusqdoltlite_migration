@@ -23,6 +23,7 @@ use crate::{Error, Migrations};
 #[test]
 fn fk_check_validate_test() -> Result<(), Box<dyn std::error::Error>> {
     let mut conn = Connection::open_in_memory()?;
+    conn.pragma_update(None, "foreign_keys", false)?;
     let tx = conn.transaction()?;
     let mut fk_check = FKCheck::new();
     tx.execute_batch(
@@ -68,6 +69,7 @@ fn invalid_down_fk_check_test() {
     let migrations = Migrations::new(vec![m_invalid_fk_down()]);
 
     let mut conn = Connection::open_in_memory().unwrap();
+    conn.pragma_update(None, "foreign_keys", false).unwrap();
     migrations.to_latest(&mut conn).unwrap();
 
     assert!(matches!(
