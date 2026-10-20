@@ -445,9 +445,9 @@ checksum = "68ab91017fe16c622486840e4c83c9a37afeff978bd239b5293d61ece587de66"
 
 [[package]]
 name = "libdoltlite-sys"
-version = "0.38.18"
+version = "0.38.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "649ba6997dc031440a192992dbac45fa2a416974eb8ca65ada2e935f6e937521"
+checksum = "aa48e9a99d2f88be2459ac2271d9a09c71a6520b52ff8685c7418145d8139ba2"
 dependencies = [
  "pkg-config",
  "vcpkg",
@@ -684,9 +684,9 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
 name = "rusqdoltlite"
-version = "0.40.18"
+version = "0.41.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cbd11d2da78b76a2b55137cd44008e15feb6a0652b6bc11a10f44a36a9a29056"
+checksum = "322e06a68fd35fd88ca331d5c0719cb3baaca5df4fc2debb3e498eb60a225256"
 dependencies = [
  "bitflags",
  "fallible-iterator",
